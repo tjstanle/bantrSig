@@ -13,7 +13,7 @@ app.get('/', (req, res) => {
   });
   app.get('/serverTest', (req, res) => {
     res.type('html');
-    res.render('serverTest'); 
+    res.render('ServerTest'); 
   });
 
 

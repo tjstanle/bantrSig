@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<style>
+    body,html{
+        height: 100%;
+        width: 100%;
+        /* display: flex; */
+        
+        overflow: hidden;
+        background-repeat: no-repeat;
+        background: #7F7FD5;
+    }
+    .center{
+        position: relative;
+        /* display: flex; */
+        /* margin-right: 10%; */
+        justify-content: center;
+        align-content: center;
+        align-items: center;
+    
+    }
+    .button{
+        border-radius: 12px;
+        background-color: green;
+    }
+    .button_end{
+        border-radius: 12px;
+        background-color:red;
+    }
+</style>
+<html>
+    <title>Test Signal Server</title>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://unpkg.com/peerjs@1.5.4/dist/peerjs.min.js">
+
+            
+        </script>
+
+    </head>
+<body>
+<div class="center">
+<h1 >Bantr Signaling Server</h1>
+</div>
+<!-- <br> -->
+<label class="center"><b>Really, nothing to see here also....</b></label>
+<br>
+<button class="button" onclick="test()">Test</button>
+<button class="button_end" onclick="end()">End</button>
+
+
+</body>
+<script>
+    let peer=null;
+    function test(){
+        console.log('running');
+        peer = new Peer("someidlasdlfk", {
+        key:"lAknsDfy9we7rnkjsdf70ndSDGHyekjb",
+		host: "localhost",
+		port: 9000,
+		path: "/bantr_signal/signal",
+	});
+    peer.on('open',function (id){
+        console.log('connected',id)
+    })
+                
+            }
+            function end(){
+                if(peer!=null){
+                console.log(peer)
+                peer.disconnect()
+                peer.off('open',null)
+                peer=null;
+                }
+
+            }
+</script>
+</html>
+
+

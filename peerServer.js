@@ -2,6 +2,8 @@ const express = require("express");
 const { ExpressPeerServer } = require("peer");
 const axios = require('axios').default;
 const fs = require('fs');
+const https = require('https');
+
 // const { log } = require("console");
 // const path = require('path'); 
 // const https = require("https");
@@ -40,14 +42,18 @@ try {
 
 
 
-const server = app.listen(9000);
+// const server = app.listen(9000);
+const server = https.createServer({
+    key: fs.readFileSync('/opt/bitnami/apache/conf/bitnami/certs/server.key'),
+    cert: fs.readFileSync('/opt/bitnami/apache/conf/bitnami/certs/server.crt')
+},app);
 const peerServer = ExpressPeerServer(server, {
     key:"AknsDfy9we7rnkjsdf70ndSDGHyekjb",
     // port:443,
-    // ssl: {
-    //     		key: fs.readFileSync(__dirname+'/assets/bantr.pem'),
-    //     		cert: fs.readFileSync(__dirname+'/assets/bantr_cert.cer'),
-    //     	},
+    ssl: {
+        key: fs.readFileSync('/opt/bitnami/apache/conf/bitnami/certs/server.key'),
+        cert: fs.readFileSync('/opt/bitnami/apache/conf/bitnami/certs/server.crt')
+        	},
 	path: "/signal",
 });
 peerServer.on('connection', async (client) => {

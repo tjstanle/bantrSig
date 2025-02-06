@@ -59,8 +59,8 @@
         console.log('running');
         peer = new Peer("sngDlS223k5d6dF6304S", {
         key:"AknsDfy9we7rnkjsdf70ndSDGHyekjb",
-		host: "34.233.225.97",
-		port: 9000,
+		host: "signal.bantr.live",
+		port: 443,
 		path: "/bantr_signal/signal",
         // secure:true,
         // proxied: true,
@@ -71,11 +71,13 @@
                 
             }
             function end(){
+                let data=document.getElementById('data')
                 if(peer!=null){
                 console.log(peer)
                 peer.disconnect()
                 peer.off('open',null)
                 peer=null;
+                data.innerText="Server Disconnected"
                 return console.log('Peer halted!')
                 }
                 return console.log('Not Connected')

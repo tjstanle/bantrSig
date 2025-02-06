@@ -40,14 +40,14 @@ try {
 
 
 
-const server = app.listen(443);
+const server = app.listen(9000);
 const peerServer = ExpressPeerServer(server, {
     key:"AknsDfy9we7rnkjsdf70ndSDGHyekjb",
     // port:443,
-    ssl: {
-        		key: fs.readFileSync(__dirname+'/assets/bantr.pem'),
-        		cert: fs.readFileSync(__dirname+'/assets/bantr_cert.cer'),
-        	},
+    // ssl: {
+    //     		key: fs.readFileSync(__dirname+'/assets/bantr.pem'),
+    //     		cert: fs.readFileSync(__dirname+'/assets/bantr_cert.cer'),
+    //     	},
 	path: "/signal",
 });
 peerServer.on('connection', async (client) => {

@@ -44,6 +44,8 @@
 <!-- <br> -->
 <label class="center"><b>Really, nothing to see here also....</b></label>
 <br>
+<span style="color: rgba(186, 21, 21, 0.932);font-weight: bold;" id="data"></span>
+<br>
 <button class="button" onclick="test()">Test</button>
 <button class="button_end" onclick="end()">End</button>
 
@@ -52,15 +54,19 @@
 <script>
     let peer=null;
     function test(){
+        let data=document.getElementById('data')
+        data.innerText='Testing';
         console.log('running');
-        peer = new Peer("someidlasdlfk", {
-        key:"lAknsDfy9we7rnkjsdf70ndSDGHyekjb",
-		host: "localhost",
-		port: 9000,
+        peer = new Peer("sngDlS223k5d6dF6304S", {
+        key:"AknsDfy9we7rnkjsdf70ndSDGHyekjb",
+		host: "34.233.225.97",
+		port: 443,
 		path: "/bantr_signal/signal",
+        // secure:true,
+        // proxied: true,
 	});
     peer.on('open',function (id){
-        console.log('connected',id)
+        data.innerText="Connected to ICE -> "+id
     })
                 
             }
@@ -70,7 +76,9 @@
                 peer.disconnect()
                 peer.off('open',null)
                 peer=null;
+                return console.log('Peer halted!')
                 }
+                return console.log('Not Connected')
 
             }
 </script>

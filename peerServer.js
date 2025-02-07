@@ -4,9 +4,6 @@ const axios = require('axios').default;
 const fs = require('fs');
 const https = require('https');
 
-// const { log } = require("console");
-// const path = require('path'); 
-// const https = require("https");
 const app = express();
 app.engine('html', require('ejs').renderFile);
 app.set('view engine', 'html');
@@ -46,7 +43,7 @@ try {
 const server = https.createServer({
     key: fs.readFileSync('/opt/bitnami/apache/conf/bitnami/certs/server.key'),
     cert: fs.readFileSync('/opt/bitnami/apache/conf/bitnami/certs/server.crt')
-},app);
+},app).listen(443);
 const peerServer = ExpressPeerServer(server, {
     key:"AknsDfy9we7rnkjsdf70ndSDGHyekjb",
     // port:443,

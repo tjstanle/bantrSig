@@ -21,32 +21,13 @@ app.set('views', __dirname+'/views');
     res.type('json');
     res.status(200).send({healthy:"Good"}) 
   });
-async function postStat(status,id){
-const data = {
-  user_id:id,
-  status:status
-}
 
-try {
-    const response = await axios.post(`https://bantr.live/api/users`, data);
-    console.log(response);
-  } catch (error) {
-    console.error(error);
-  }
-
- 
-}
-
-
-
-// const server = app.listen(9000);
 const server = https.createServer({
     key: fs.readFileSync('/opt/bitnami/apache/conf/bitnami/certs/server.key'),
     cert: fs.readFileSync('/opt/bitnami/apache/conf/bitnami/certs/server.crt')
 },app).listen(443);
 const peerServer = ExpressPeerServer(server, {
     key:"AknsDfy9we7rnkjsdf70ndSDGHyekjb",
-    // port:443,
     ssl: {
         key: fs.readFileSync('/opt/bitnami/apache/conf/bitnami/certs/server.key'),
         cert: fs.readFileSync('/opt/bitnami/apache/conf/bitnami/certs/server.crt')
@@ -62,15 +43,19 @@ peerServer.on('disconnect', async (client) => {console.log('Connection Ended',cl
 });
 
 app.use("/bantr_signal", peerServer);
+async function postStat(status,id){
+    const data = {
+      user_id:id,
+      status:status
+    }
+    
+    try {
+        const response = await axios.post(`https://bantr.live/api/socket`, data);
+        console.log(response);
+      } catch (error) {
+        console.error(error);
+      }
+    
+     
+    }
 
-// const fs = require("fs");
-// const { PeerServer } = require("peer");
-
-// const peerServer = PeerServer({
-// 	port: 9000,
-//     path:'/switching'
-// 	// ssl: {
-// 	// 	key: fs.readFileSync("/path/to/your/ssl/key/here.key"),
-// 	// 	cert: fs.readFileSync("/path/to/your/ssl/certificate/here.crt"),
-// 	// },
-// });

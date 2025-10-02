@@ -28,7 +28,31 @@ const server = https.createServer({
 },app).listen(443);
 const peerServer = ExpressPeerServer(server, {
     key:"AknsDfy9we7rnkjsdf70ndSDGHyekjb",
-    
+     config:{iceServers: [
+      {
+        urls: "stun:stun.relay.metered.ca:80",
+      },
+      {
+        urls: "turn:global.relay.metered.ca:80",
+        username: "07c6d1f8a7159403675f5274",
+        credential: "tBycc89g/1CS7whj",
+      },
+      {
+        urls: "turn:global.relay.metered.ca:80?transport=tcp",
+        username: "07c6d1f8a7159403675f5274",
+        credential: "tBycc89g/1CS7whj",
+      },
+      {
+        urls: "turn:global.relay.metered.ca:443",
+        username: "07c6d1f8a7159403675f5274",
+        credential: "tBycc89g/1CS7whj",
+      },
+      {
+        urls: "turns:global.relay.metered.ca:443?transport=tcp",
+        username: "07c6d1f8a7159403675f5274",
+        credential: "tBycc89g/1CS7whj",
+      },
+  ]},
     ssl: {
         key: fs.readFileSync('/opt/bitnami/apache/conf/bitnami/certs/server.key'),
         cert: fs.readFileSync('/opt/bitnami/apache/conf/bitnami/certs/server.crt')

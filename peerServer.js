@@ -28,6 +28,7 @@ const server = https.createServer({
 },app).listen(443);
 const peerServer = ExpressPeerServer(server, {
     key:"AknsDfy9we7rnkjsdf70ndSDGHyekjb",
+    
     ssl: {
         key: fs.readFileSync('/opt/bitnami/apache/conf/bitnami/certs/server.key'),
         cert: fs.readFileSync('/opt/bitnami/apache/conf/bitnami/certs/server.crt')

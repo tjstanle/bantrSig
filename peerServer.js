@@ -47,12 +47,12 @@ const peerServer = ExpressPeerServer(server, {
 peerServer.on('connection', (client) => {
     console.log('New Connection:', client.id);
     // Fire-and-forget: Don't 'await' stats to keep the signaling handshake instant
-    postStat(true, client.id);
+    // postStat(true, client.id);
 });
 
 peerServer.on('disconnect', (client) => {
     console.log('Connection Ended:', client.id);
-    postStat(false, client.id);
+    // postStat(false, client.id);
 });
 
 // Mount the optimized signal path

@@ -3,9 +3,9 @@ const { ExpressPeerServer } = require("peer");
 const axios = require('axios').default;
 const fs = require('fs');
 const https = require('https');
-
+const compression = require('compression'); 
 const app = express();
-
+app.use(compression());
 // Set up minimalist view engine
 app.engine('html', require('ejs').renderFile);
 app.set('view engine', 'html');
@@ -38,8 +38,8 @@ const peerServer = ExpressPeerServer(server, {
     key: "AknsDfy9we7rnkjsdf70ndSDGHyekjb",
     path: "/signal",
     allow_discovery: false, // PERFORMANCE: Disables peer listing, saves massive CPU/RAM
-    // proxied: true,           // PERFORMANCE: Optimized for Bitnami/Apache reverse proxy
-    alive_timeout: 15000,    // PERFORMANCE: Cleans up dead connections every 15s
+    proxied: true,           // PERFORMANCE: Optimized for Bitnami/Apache reverse proxy
+    alive_timeout: 20000,    // PERFORMANCE: Cleans up dead connections every 15s
     concurrent_limit: 5000   // SCALABILITY: High ceiling for your t2.micro scaling
 });
 

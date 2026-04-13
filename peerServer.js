@@ -37,6 +37,7 @@ const server = https.createServer(sslOptions, app).listen(443);
 const peerServer = ExpressPeerServer(server, {
     key: "AknsDfy9we7rnkjsdf70ndSDGHyekjb",
     path: "/signal",
+    ssl: sslOptions,
     allow_discovery: false, // PERFORMANCE: Disables peer listing, saves massive CPU/RAM
     proxied: true,           // PERFORMANCE: Optimized for Bitnami/Apache reverse proxy
     alive_timeout: 60000,    // PERFORMANCE: Cleans up dead connections every 15s
